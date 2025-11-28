@@ -1,0 +1,25 @@
+{
+  "name": "parcial-db2-apple-music-seeder",
+  "version": "1.0.0",
+  "description": "Herramienta de generación de datos (Seeding) para el Examen Parcial de Bases de Datos II",
+  "main": "seed.js",
+  "scripts": {
+    "start": "node seed.js",
+    "seed": "node seed.js"
+  },
+  "keywords": [
+    "mongodb",
+    "seeding",
+    "faker",
+    "apple-music"
+  ],
+  "author": "Cátedra Bases de Datos II - Ing. Brandon Chitay",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "mongodb": "^6.5.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
