@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: apple-music-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"   # El seed.js se conecta a mongodb://localhost:27017
+    volumes:
+      - apple_music_data:/data/db
+
+volumes:
+  apple_music_data:

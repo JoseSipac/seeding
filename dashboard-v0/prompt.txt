@@ -1,0 +1,79 @@
+Diseña un dashboard web llamado "Apple Music Admin Analytics" para ejecutivos de marketing y finanzas.
+
+Requisitos generales de diseño:
+- Estilo visual inspirado en Apple Music:
+  - Tema oscuro (dark mode).
+  - Tipografía limpia y moderna.
+  - Acentos en rosa/fucsia y morado.
+- Layout responsive:
+  - Barra superior (header) con el título "Apple Music Admin Analytics" y un selector de rango de fechas global (aunque sea solo visual).
+  - Cuerpo con tarjetas (cards) organizadas en un grid de 2 columnas en desktop y 1 columna en pantallas pequeñas.
+- Usa componentes tipo cards con títulos claros, íconos discretos y datos resaltados.
+- Generar la página en React + Tailwind CSS.
+
+El dashboard debe tener 5 secciones principales, cada una representando una métrica de negocio específica. Cada sección debe ir en su propia card:
+
+1) "Royalties por Artista (último mes)"
+   - Gráfica de barras horizontales.
+   - Eje Y: nombre del artista.
+   - Eje X: total de segundos reproducidos (total_seconds).
+   - Debajo de la gráfica, mostrar una tabla resumida con columnas:
+     - Artista
+     - Género
+     - Segundos totales
+   - Esta sección consumirá el endpoint:
+     GET /api/analytics/royalties?days=30
+
+2) "Top 10 Guatemala (últimos 7 días)"
+   - Tabla o lista con las 10 canciones más escuchadas en la región seleccionada.
+   - Columnas:
+     - Posición (#1, #2, ...)
+     - Título de la canción
+     - Artista
+     - Género
+     - Reproducciones (play_count)
+   - En el header de la card, incluir:
+     - Un dropdown de región (ej. GT, US, MX) – aunque no tenga lógica real, solo diseño.
+     - Un chip o etiqueta con el rango de días (últimos 7 días).
+   - Esta sección consumirá el endpoint:
+     GET /api/charts/top-songs?region=GT&days=7
+
+3) "Usuarios Zombis Premium"
+   - Indicador numérico grande con el total de usuarios zombis.
+   - Debajo, una tabla pequeña con columnas:
+     - Usuario (username)
+     - Email
+     - País (country)
+     - Días desde la última actividad (last_activity_days_ago)
+   - Usar badges o etiquetas en rojo para resaltar que son usuarios en riesgo de churn.
+   - Esta sección consumirá el endpoint:
+     GET /api/users/zombies?subscription=Premium&days=30
+
+4) "Demografía – Usuarios que escuchan Reggaeton"
+   - Gráfica de pastel o donut mostrando la distribución por rangos de edad:
+     - 15-20
+     - 21-30
+     - 31-40
+     - 41-50
+     - other (si aplica)
+   - Debajo de la gráfica, mostrar una lista o tabla con:
+     - Rango de edad (age_range)
+     - Conteo (count)
+     - Porcentaje (percentage)
+   - Esta sección consumirá el endpoint:
+     GET /api/analytics/reggaeton-age-distribution
+
+5) "Heavy Users de Bad Bunny"
+   - Tabla con los usuarios que más canciones distintas han escuchado de Bad Bunny.
+   - Columnas:
+     - Usuario (username)
+     - País (country)
+     - Canciones distintas escuchadas (distinct_songs_listened)
+   - Resaltar el primer lugar (#1) con un badge dorado o destacado.
+   - Esta sección consumirá el endpoint:
+     GET /api/analytics/bad-bunny-heavy-users?limit=5
+
+Extras:
+- Incluir en el header del dashboard un breve subtítulo: "Panel de métricas en tiempo real para Apple Music (PoC MongoDB)".
+- No es necesario implementar llamadas reales a la API; puedes usar datos mock en el frontend.
+- En el código, organiza el layout usando componentes reutilizables para las cards y las tablas.
